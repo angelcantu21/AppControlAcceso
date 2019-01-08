@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".IncidenciasActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/txtIncidencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="21dp"
+        android:background="@drawable/focus_input"
+        android:textAlignment="center"
+        android:padding="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="10dp"
+        android:hint="Incidencia"/>
+
+    <EditText
+        android:id="@+id/txtIncidenciaDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:padding="10dp"
+        android:background="@drawable/focus_input"
+        android:layout_margin="15dp"
+        android:hint="Descripcion de la incidencia..."
+        android:textSize="21dp"
+        android:gravity="start"/>
+
+    <Button
+        android:id="@+id/btnIncidencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Reportar incidencia"
+        android:background="#000"
+        android:textColor="#fff"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

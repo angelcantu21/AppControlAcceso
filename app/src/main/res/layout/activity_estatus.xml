@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EstatusActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtStado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cambiar de estado"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#3d3d3d" />
+
+    <Switch
+        android:id="@+id/switchDisponible"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="15dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        app:buttonTint="@color/colorPrimary"
+        android:onClick="verificarSwitch"
+        android:text="Disponible" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#3d3d3d" />
+
+    <Switch
+        android:id="@+id/switchAusente"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="15dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        app:buttonTint="@color/colorPrimary"
+        android:onClick="verificarSwitch"
+        android:text="Ausente" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#3d3d3d" />
+
+    <Switch
+        android:id="@+id/switchNoDisponible"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="15dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        app:buttonTint="@color/colorPrimary"
+        android:onClick="verificarSwitch"
+        android:text="No molestar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#3d3d3d" />
+
+    <Button
+        android:id="@+id/btnGuardarEstado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar cambios"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#fff"
+        android:background="#000"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

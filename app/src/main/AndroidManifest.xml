@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.project.angelcanturamirez.appcontrolacceso">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".InicioActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".RegistrarActivity"
+            android:label="Registrar Invitado"
+            android:parentActivityName=".InicioActivity" />
+        <activity
+            android:name=".DetallesActivity"
+            android:label="Configuracion"
+            android:parentActivityName=".InicioActivity" />
+        <activity
+            android:name=".InvitadosActivity"
+            android:label="Lista de invitados"
+            android:parentActivityName=".InicioActivity" />
+        <activity
+            android:name=".MensajesActivity"
+            android:label="Mensajes"
+            android:parentActivityName=".InicioActivity" />
+        />
+        <activity
+            android:name=".EstatusActivity"
+            android:label="Estatus"
+            android:parentActivityName=".InicioActivity" />
+        <activity android:name=".IncidenciasActivity"
+            android:label="Incidencias"
+            android:parentActivityName=".InicioActivity"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Control de Acceso - V1.0</string>
+    <string name="url">http://10.0.0.9</string>
+</resources>
