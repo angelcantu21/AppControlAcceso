@@ -58,7 +58,7 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
         cardBoton.setOnClickListener(this);
         cardIncidencias.setOnClickListener(this);
 
-        //WebService
+        //WebService datos
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         String url_edit= "http://10.0.0.9/appacceso/ConsultarResidentes.php?id=1";
         jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
