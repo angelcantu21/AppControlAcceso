@@ -42,7 +42,7 @@
                     android:textSize="18dp"
                     android:text="Jose Angel Cantu Ramirez"/>
             </LinearLayout>
-
+<!--
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                 android:textColor="#000"
                 android:textSize="25dp"
                 android:textStyle="bold" />
-
+-->
     <LinearLayout
         android:clipToPadding="false"
         android:gravity="center"
@@ -90,6 +90,7 @@
                     android:background="#6e6e6e">
 
                     <TextView
+                        android:id="@+id/TituloRegistrar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -131,9 +132,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text=" "
-                    android:padding="5dp"
-                    android:textColor="#2ac400"/>
+                    android:text="{Estado}"
+                    android:padding="5dp"/>
 
             </LinearLayout>
 
@@ -180,11 +180,12 @@
                 android:background="#6e6e6e">
 
                 <TextView
+                    android:id="@+id/TituloInvitados"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Revise y verifique a sus invitados"
+                    android:text="Revise y verifique a sus invitados."
                     android:textColor="#fff" />
 
             </LinearLayout>
@@ -220,11 +221,12 @@
                 android:background="#6e6e6e">
 
                 <TextView
+                    android:id="@+id/TituloMensajes"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Envia y revisa tus mensajes"
+                    android:text="Envia y revisa tus mensajes."
                     android:textColor="#fff" />
 
             </LinearLayout>
@@ -273,11 +275,12 @@
                         android:background="#6e6e6e">
 
                         <TextView
+                            android:id="@+id/TituloIncidencias"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="Registra tus incidencias aqui"
+                            android:text="Registra tus incidencias aqui."
                             android:textColor="#fff" />
                     </LinearLayout>
 
@@ -302,17 +305,27 @@
                         android:background="#9f9f9f">
 
                         <ImageView
-                            android:layout_width="64dp"
+                            android:layout_width="match_parent"
                             android:layout_height="64dp"
-                            android:src="@drawable/cellphone" />
+                            android:src="@drawable/cellphone"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="35dp"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:text="BOTON DE PANICO"
-                            android:textStyle="bold"
-                            android:textColor="#fff"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#6e6e6e">
+
+                            <TextView
+                                android:id="@+id/TituloPanico"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Solo toca esto y se llamara al guardia."
+                                android:textColor="#fff"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -355,6 +368,7 @@
                         android:background="#6e6e6e">
 
                         <TextView
+                            android:id="@+id/TituloConfiguracion"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"

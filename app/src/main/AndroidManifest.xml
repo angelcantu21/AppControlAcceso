@@ -50,9 +50,14 @@
             android:name=".EstatusActivity"
             android:label="Estatus"
             android:parentActivityName=".InicioActivity" />
-        <activity android:name=".IncidenciasActivity"
+        <activity
+            android:name=".IncidenciasActivity"
             android:label="Incidencias"
-            android:parentActivityName=".InicioActivity"/>
+            android:parentActivityName=".InicioActivity" />
+        <activity
+            android:name=".Configuraciones.AcercaActivity"
+            android:label="Acerca de"
+            android:parentActivityName=".DetallesActivity" />
     </application>
 
 </manifest>

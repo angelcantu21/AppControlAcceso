@@ -2,6 +2,7 @@ package com.project.angelcanturamirez.appcontrolacceso;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,12 +26,15 @@ import org.json.JSONObject;
 
 public class InicioActivity extends AppCompatActivity implements View.OnClickListener, Response.ErrorListener, Response.Listener<JSONObject>{
 
+    Typeface fuente;
+
     RequestQueue requestQueue;
     JsonObjectRequest jsonObjectRequest;
 
-    TextView txt_status;
+    TextView txt_status, txt_registro, txt_invitados, txt_mensajes, txt_incidencias, txt_configuracion, txt_panico;
     CardView cardRegistrar, cardStatus, cardConfiguracion, cardMensajes, cardInvitados, cardBoton, cardIncidencias;
     Intent i ;
+    String PATH_FUENTE = "fuentes/Questrial.ttf";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,22 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
 
         //Textview
         txt_status = (TextView) findViewById(R.id.txtStatus);
+        txt_registro = (TextView) findViewById(R.id.TituloRegistrar);
+        txt_invitados = (TextView) findViewById(R.id.TituloInvitados);
+        txt_mensajes = (TextView) findViewById(R.id.TituloMensajes);
+        txt_incidencias = (TextView) findViewById(R.id.TituloIncidencias);
+        txt_configuracion = (TextView) findViewById(R.id.TituloConfiguracion);
+        txt_panico = (TextView) findViewById(R.id.TituloPanico);
+
+        //Cargar fuentes
+        this.fuente = Typeface.createFromAsset(getAssets(), PATH_FUENTE);
+        txt_status.setTypeface(fuente);
+        txt_registro.setTypeface(fuente);
+        txt_invitados.setTypeface(fuente);
+        txt_mensajes.setTypeface(fuente);
+        txt_incidencias.setTypeface(fuente);
+        txt_configuracion.setTypeface(fuente);
+        txt_panico.setTypeface(fuente);
 
         //Card
         cardRegistrar = (CardView) findViewById(R.id.bankcardId);
@@ -125,13 +145,13 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
 
             if (residente.getDisponible().equals("1")) {
                 txt_status.setTextColor(Color.parseColor("#26E300"));
-                txt_status.setText("Disponible");
+                txt_status.setText("Estado: Disponible");
             } else if (residente.getAusente().equals("1")) {
                 txt_status.setTextColor(Color.parseColor("#EAD500"));
-                txt_status.setText("Ausente");
+                txt_status.setText("Estado: Ausente");
             } else if (residente.getMolestar().equals("1")) {
                 txt_status.setTextColor(Color.parseColor("#FF0000"));
-                txt_status.setText("No molestar");
+                txt_status.setText("Estado: No molestar");
             }
 
         } catch (JSONException e) {

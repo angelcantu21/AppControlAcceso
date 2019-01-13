@@ -10,19 +10,20 @@
     tools:context=".SplashActivity">
 
     <TextView
+        android:id="@+id/txtSplash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="70dp"
         android:text="CONTROL DE ACCESO"
-        android:fontFamily="sans-serif-condensed"
-        android:textSize="40dp"
+        android:textSize="50dp"
         android:textStyle="bold"
         android:textColor="#000"
         android:textAlignment="center"/>
-
     <ImageView
+        android:id="@+id/imgSplash"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         android:src="@drawable/splashscreen"/>
 
 </LinearLayout>
