@@ -8,18 +8,21 @@ import android.view.View;
 import android.widget.Button;
 
 import com.project.angelcanturamirez.appcontrolacceso.Configuraciones.AcercaActivity;
+import com.project.angelcanturamirez.appcontrolacceso.Configuraciones.PagosActivity;
 
 public class DetallesActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button acerca;
+    Button acerca, pagos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalles);
 
         acerca = (Button) findViewById(R.id.btnAcerca);
+        pagos = (Button) findViewById(R.id.btnPagos);
 
         acerca.setOnClickListener(this);
+        pagos.setOnClickListener(this);
 
     }
 
@@ -29,6 +32,10 @@ public class DetallesActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btnAcerca:
                 Intent intentA = new Intent(this, AcercaActivity.class);
                 startActivity(intentA);
+                break;
+            case R.id.btnPagos:
+                Intent intentP = new Intent(this, PagosActivity.class);
+                startActivity(intentP);
                 break;
         }
     }

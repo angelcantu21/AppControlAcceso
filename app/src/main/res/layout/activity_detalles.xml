@@ -46,10 +46,10 @@
                 android:background="#3d3d3d" />
 
             <Button
-                android:id="@+id/btnCerrar"
+                android:id="@+id/btnPagos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cerrar Sesion"
+                android:text="Mensaulidades"
                 android:background="#fff"
                 android:textColor="#000"/>
 
