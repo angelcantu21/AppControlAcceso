@@ -1,5 +1,6 @@
 package com.project.angelcanturamirez.appcontrolacceso;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ public class EstatusActivity extends AppCompatActivity implements View.OnClickLi
     Switch disponible, ausente, no_disponible;
     TextView texto;
     Button btnGuardar;
-    String accion = "", url = "";
+    String accion = "", url = "", id="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +50,12 @@ public class EstatusActivity extends AppCompatActivity implements View.OnClickLi
         btnGuardar = (Button) findViewById(R.id.btnGuardarEstado);
         btnGuardar.setOnClickListener(this);
 
+        //Recibir extra
+        id = getIntent().getStringExtra("id");
+
         //WebService
         requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url_edit= "http://10.0.0.9/appacceso/ConsultarResidentes.php?id=1";
+        String url_edit= "http://10.0.0.9/appacceso/ConsultarResidentes.php?id="+id;
         jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
         requestQueue.add(jsonObjectRequest);
 
@@ -124,24 +128,28 @@ public class EstatusActivity extends AppCompatActivity implements View.OnClickLi
                                 "disponible=1" +
                                 "&ausente=0" +
                                 "&molestar=0" +
-                                "&id=1";
+                                "&id="+id;
                     } else if (ausente.isChecked()) {
                         url= "http://10.0.0.9/appacceso/GuardarEstado.php?" +
                                 "disponible=0" +
                                 "&ausente=1" +
                                 "&molestar=0" +
-                                "&id=1";
+                                "&id="+id;
                     } else if (no_disponible.isChecked()) {
                         url= "http://10.0.0.9/appacceso/GuardarEstado.php?" +
                                 "disponible=0" +
                                 "&ausente=0" +
                                 "&molestar=1" +
-                                "&id=1";
+                                "&id="+id;
                     }
 
                     jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
                     requestQueue.add(jsonObjectRequest);
                     accion = "guardar";
+                    Intent i = new Intent (getApplicationContext(), InicioActivity.class);
+                    i.putExtra("id", id);
+                    startActivity(i);
+                    finish();
                 }else{
                     Toast.makeText(this, "Elige al menos un estado", Toast.LENGTH_LONG).show();
                 }

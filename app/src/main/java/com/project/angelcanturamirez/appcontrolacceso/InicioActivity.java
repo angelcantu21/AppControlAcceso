@@ -31,10 +31,11 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
     RequestQueue requestQueue;
     JsonObjectRequest jsonObjectRequest;
 
-    TextView txt_status, txt_registro, txt_invitados, txt_mensajes, txt_incidencias, txt_configuracion, txt_panico;
+    TextView txt_status, txt_registro, txt_invitados, txt_mensajes, txt_incidencias, txt_configuracion, txt_panico, txt_usuarioNombre;
     CardView cardRegistrar, cardStatus, cardConfiguracion, cardMensajes, cardInvitados, cardBoton, cardIncidencias;
     Intent i ;
     String PATH_FUENTE = "fuentes/Questrial.ttf";
+    String id ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
         txt_incidencias = (TextView) findViewById(R.id.TituloIncidencias);
         txt_configuracion = (TextView) findViewById(R.id.TituloConfiguracion);
         txt_panico = (TextView) findViewById(R.id.TituloPanico);
+        txt_usuarioNombre = (TextView) findViewById(R.id.txtNombreUsuario);
 
         //Cargar fuentes
         this.fuente = Typeface.createFromAsset(getAssets(), PATH_FUENTE);
@@ -79,8 +81,9 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
         cardIncidencias.setOnClickListener(this);
 
         //WebService datos
+        id = getIntent().getStringExtra("id");
         requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url_edit= "http://10.0.0.9/appacceso/ConsultarResidentes.php?id=1";
+        String url_edit= "http://10.0.0.9/appacceso/ConsultarResidentes.php?id="+id;
         jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
         requestQueue.add(jsonObjectRequest);
 
@@ -95,6 +98,7 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.card_status:
                 i = new Intent(this, EstatusActivity.class);
+                i.putExtra("id", id);
                 startActivity(i);
                 break;
             case R.id.card_configuracion:
@@ -138,6 +142,7 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
                 JSONObject jsonObject = null;
                 jsonObject = json.getJSONObject(x);
                 residente.setNombre(jsonObject.optString("Nombre"));
+                residente.setApellidos(jsonObject.optString("Apellidos"));
                 residente.setDisponible(jsonObject.optString("Disponible"));
                 residente.setAusente(jsonObject.optString("Ausente"));
                 residente.setMolestar(jsonObject.optString("No_molestar"));
@@ -153,6 +158,8 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
                 txt_status.setTextColor(Color.parseColor("#FF0000"));
                 txt_status.setText("Estado: No molestar");
             }
+
+            txt_usuarioNombre.setText(residente.getNombre()+" "+residente.getApellidos());
 
         } catch (JSONException e) {
             e.printStackTrace();

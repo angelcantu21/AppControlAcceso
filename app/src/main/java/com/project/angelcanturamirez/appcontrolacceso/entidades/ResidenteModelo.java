@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class ResidenteModelo implements Serializable {
 
+    private String id;
     private String nombre;
     private String apellidos;
     private String departamento;
@@ -70,5 +71,13 @@ public class ResidenteModelo implements Serializable {
 
     public void setMolestar(String molestar) {
         this.molestar = molestar;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
