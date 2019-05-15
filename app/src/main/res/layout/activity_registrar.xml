@@ -82,13 +82,19 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Selfie del invitado:"
+                android:text="Selfie del invitado (Daja pulsado la imagen para continuar)"
                 android:textColor="#000"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:layout_marginLeft="10dp"/>
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:id="@+id/fotoSelfie"/>
+
             <Button
+                android:id="@+id/btnCargarFoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cargar imagen..."
