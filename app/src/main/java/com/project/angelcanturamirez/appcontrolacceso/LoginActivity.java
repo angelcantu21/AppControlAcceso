@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -117,7 +118,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        Toast.makeText(getApplicationContext(),""+error.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Datos incorrectos "+error.toString(), Toast.LENGTH_LONG).show();
         login_correcto = false;
     }
 
@@ -140,8 +141,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             start.putExtra("id", id);
             startActivity(start);
             finish();
-        }else{
-            Toast.makeText(getApplicationContext(), "Contraseña incorrecta"+login_correcto.toString(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -149,9 +148,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btLogInButton:
-                String url_edit= "http://10.0.0.9/appacceso/ConsultarResidenteCodigo.php?id="+user.getText().toString();
-                jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
-                requestQueue.add(jsonObjectRequest);
+                if(!(user.getText().toString().equals("") && pass.getText().toString().equals(""))){
+                    String url_edit= "http://"+getString(R.string.url)+"/appacceso/ConsultarResidenteCodigo.php?id="+user.getText().toString();
+                    jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
+                    requestQueue.add(jsonObjectRequest);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Datos vacios", Toast.LENGTH_LONG).show();
+                }
+
                 break;
         }
     }

@@ -1,9 +1,12 @@
 package com.project.angelcanturamirez.appcontrolacceso;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
@@ -32,6 +35,7 @@ public class EstatusActivity extends AppCompatActivity implements View.OnClickLi
     TextView texto;
     Button btnGuardar;
     String accion = "", url = "", id="";
+    int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +59,7 @@ public class EstatusActivity extends AppCompatActivity implements View.OnClickLi
 
         //WebService
         requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url_edit= "http://10.0.0.9/appacceso/ConsultarResidentes.php?id="+id;
+        String url_edit= "http://"+getString(R.string.url)+"/appacceso/ConsultarResidentes.php?id="+id;
         jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
         requestQueue.add(jsonObjectRequest);
 
@@ -70,7 +74,15 @@ public class EstatusActivity extends AppCompatActivity implements View.OnClickLi
         ActionBar regresar = getSupportActionBar();//SE INSTANCIA LA ACCION DE LA BARRA
         if (regresar != null){//MIENTRAS SEA DIFERENTE DE NULO
             regresar.setDisplayHomeAsUpEnabled(true);//SE MANTIENE HABILITADO
+            regresar.setDisplayShowHomeEnabled(true);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()== android.R.id.home)
+            finish();
+            return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -83,6 +95,10 @@ public class EstatusActivity extends AppCompatActivity implements View.OnClickLi
 
         if(accion == "guardar"){
             Toast.makeText(this, "Guardado", Toast.LENGTH_LONG).show();
+            Intent data = new Intent();
+            data.setData(Uri.parse(id));
+            setResult(RESULT_OK, data);
+            finish();
         }else {
 
             ResidenteModelo residente = null;
@@ -124,19 +140,19 @@ public class EstatusActivity extends AppCompatActivity implements View.OnClickLi
                 if (disponible.isChecked() || ausente.isChecked() || no_disponible.isChecked()){
 
                     if (disponible.isChecked()) {
-                        url= "http://10.0.0.9/appacceso/GuardarEstado.php?" +
+                        url= "http://"+getString(R.string.url)+"/appacceso/GuardarEstado.php?" +
                                 "disponible=1" +
                                 "&ausente=0" +
                                 "&molestar=0" +
                                 "&id="+id;
                     } else if (ausente.isChecked()) {
-                        url= "http://10.0.0.9/appacceso/GuardarEstado.php?" +
+                        url= "http://"+getString(R.string.url)+"/appacceso/GuardarEstado.php?" +
                                 "disponible=0" +
                                 "&ausente=1" +
                                 "&molestar=0" +
                                 "&id="+id;
                     } else if (no_disponible.isChecked()) {
-                        url= "http://10.0.0.9/appacceso/GuardarEstado.php?" +
+                        url= "http://"+getString(R.string.url)+"/appacceso/GuardarEstado.php?" +
                                 "disponible=0" +
                                 "&ausente=0" +
                                 "&molestar=1" +
@@ -146,15 +162,18 @@ public class EstatusActivity extends AppCompatActivity implements View.OnClickLi
                     jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
                     requestQueue.add(jsonObjectRequest);
                     accion = "guardar";
-                    Intent i = new Intent (getApplicationContext(), InicioActivity.class);
-                    i.putExtra("id", id);
-                    startActivity(i);
-                    finish();
                 }else{
                     Toast.makeText(this, "Elige al menos un estado", Toast.LENGTH_LONG).show();
                 }
 
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if ((requestCode == REQUEST_CODE && (resultCode == RESULT_OK))){
+            id = data.getDataString();
         }
     }
 

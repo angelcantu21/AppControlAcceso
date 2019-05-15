@@ -35,7 +35,7 @@ public class RegistrarActivity extends AppCompatActivity implements View.OnClick
     private TextInputLayout carroInput, placasInput, empresaInput;
     private Button gen_btn, reg_btn;
     private ImageView image;
-    private String fecha_caducidad, checkActivo, url;
+    private String fecha_caducidad, checkActivo, url, id;
 
     RequestQueue requestQueue;
     JsonObjectRequest jsonObjectRequest;
@@ -67,6 +67,9 @@ public class RegistrarActivity extends AppCompatActivity implements View.OnClick
         image = (ImageView) findViewById(R.id.image);
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        //Recibir extra
+        id = getIntent().getStringExtra("id");
 
         //CalendarView
         caducidad = (CalendarView) findViewById(R.id.calendarioCaducidad);
@@ -126,7 +129,7 @@ public class RegistrarActivity extends AppCompatActivity implements View.OnClick
 
                 if (check.isChecked()){
                     checkActivo = "true";
-                        url = getString(R.string.url)+"/appacceso/RegistrarInvitados.php?" +
+                        url = "http://"+getString(R.string.url)+"/appacceso/RegistrarInvitados.php?" +
                             "Nombre="+ nombre.getText().toString() +
                             "&Caducidad="+ fecha_caducidad +
                             "&FotoID=id.png" +
@@ -135,11 +138,11 @@ public class RegistrarActivity extends AppCompatActivity implements View.OnClick
                             "&Placas=" + placas.getText().toString() +
                             "&Empresa=" + empresa.getText().toString() +
                             "&GeneradorQR=9373isjsue" +
-                            "&FkResidente=1"+
+                            "&FkResidente="+id+
                             "&check="+checkActivo;
                 }else{
                     checkActivo = "false";
-                    url = getString(R.string.url)+"/appacceso/RegistrarInvitados.php?" +
+                    url = "http://"+getString(R.string.url)+"/appacceso/RegistrarInvitados.php?" +
                             "Nombre="+ nombre.getText().toString() +
                             "&Caducidad="+ fecha_caducidad +
                             "&FotoID=id.png" +
@@ -148,7 +151,7 @@ public class RegistrarActivity extends AppCompatActivity implements View.OnClick
                             "&Placas=no" +
                             "&Empresa=no" +
                             "&GeneradorQR=9373isjsue" +
-                            "&FkResidente=1"+
+                            "&FkResidente="+id+
                             "&check="+checkActivo;
                 }
 

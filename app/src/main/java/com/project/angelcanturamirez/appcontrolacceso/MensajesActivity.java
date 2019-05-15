@@ -33,6 +33,8 @@ public class MensajesActivity extends AppCompatActivity implements Response.Erro
     ArrayList<MensajeModelo> listaMensajes;
     RecyclerView recyclerView;
 
+    String id="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,9 @@ public class MensajesActivity extends AppCompatActivity implements Response.Erro
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         RecyclerViewMensajes adaptador = new RecyclerViewMensajes(listaMensajes);
         recyclerView.setAdapter(adaptador);
+
+        //Recibir extra
+        id = getIntent().getStringExtra("id");
 
         String url_edit= getString(R.string.url)+"/appacceso/mensajes.php?id=1";
         jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);

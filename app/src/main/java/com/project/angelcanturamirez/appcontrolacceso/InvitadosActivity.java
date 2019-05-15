@@ -28,6 +28,8 @@ public class InvitadosActivity extends AppCompatActivity implements Response.Err
     ArrayList<InvitadoModelo> listaInvitados;
     RecyclerView recyclerView;
 
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,9 +44,13 @@ public class InvitadosActivity extends AppCompatActivity implements Response.Err
         RecyclerViewAdaptador adaptador = new RecyclerViewAdaptador(listaInvitados);
         recyclerView.setAdapter(adaptador);
 
-        String url_edit= getString(R.string.url)+"/appacceso/ConsultarInvitados.php?id=1";
+        //Recibir extra
+        id = getIntent().getStringExtra("id");
+
+        String url_edit= "http://"+getString(R.string.url)+"/appacceso/ConsultarInvitados.php?id="+id;
         jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
         requestQueue.add(jsonObjectRequest);
+
     }
 
     //METODO PARA PONER BOTON DE REGRESAR EN LA PARTE DE LA BARRA

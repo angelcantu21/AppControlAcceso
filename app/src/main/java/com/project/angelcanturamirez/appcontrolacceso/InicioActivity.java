@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -27,6 +28,8 @@ import org.json.JSONObject;
 public class InicioActivity extends AppCompatActivity implements View.OnClickListener, Response.ErrorListener, Response.Listener<JSONObject>{
 
     Typeface fuente;
+
+    int REQUEST_CODE = 1;
 
     RequestQueue requestQueue;
     JsonObjectRequest jsonObjectRequest;
@@ -82,11 +85,23 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
 
         //WebService datos
         id = getIntent().getStringExtra("id");
+    }
+
+    @Override
+    protected void onPostResume() {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String url_edit= "http://10.0.0.9/appacceso/ConsultarResidentes.php?id="+id;
+        String url_edit= "http://"+getString(R.string.url)+"/appacceso/ConsultarResidentes.php?id="+id;
         jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
         requestQueue.add(jsonObjectRequest);
+        super.onPostResume();
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        // TODO Auto-generated method stub
+        if ((requestCode == REQUEST_CODE && (resultCode == RESULT_OK))){
+            id = data.getDataString();
+        }
     }
 
     @Override
@@ -94,6 +109,7 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.bankcardId:
                 i = new Intent(this, RegistrarActivity.class);
+                i.putExtra("id", id);
                 startActivity(i);
                 break;
             case R.id.card_status:
@@ -103,14 +119,17 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.card_configuracion:
                 i = new Intent(this, DetallesActivity.class);
+                i.putExtra("id", id);
                 startActivity(i);
                 break;
             case R.id.card_mensajes:
                 i = new Intent(this, MensajesActivity.class);
+                i.putExtra("id", id);
                 startActivity(i);
                 break;
             case R.id.card_invitados:
                 i = new Intent(this, InvitadosActivity.class);
+                i.putExtra("id", id);
                 startActivity(i);
                 break;
             case R.id.card_llamada:
@@ -120,6 +139,7 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.card_incidencias:
                 i = new Intent(this, IncidenciasActivity.class);
+                i.putExtra("id", id);
                 startActivity(i);
                 break;
         }

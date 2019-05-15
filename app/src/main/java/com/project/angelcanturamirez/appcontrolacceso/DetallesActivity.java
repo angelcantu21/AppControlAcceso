@@ -12,7 +12,10 @@ import com.project.angelcanturamirez.appcontrolacceso.Configuraciones.PagosActiv
 
 public class DetallesActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button acerca, pagos;
+    Button acerca, pagos, salir;
+
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,10 +23,14 @@ public class DetallesActivity extends AppCompatActivity implements View.OnClickL
 
         acerca = (Button) findViewById(R.id.btnAcerca);
         pagos = (Button) findViewById(R.id.btnPagos);
+        salir = (Button) findViewById(R.id.btnSalir);
 
         acerca.setOnClickListener(this);
         pagos.setOnClickListener(this);
+        salir.setOnClickListener(this);
 
+        //Recibir extra
+        id = getIntent().getStringExtra("id");
     }
 
     @Override
@@ -36,6 +43,9 @@ public class DetallesActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btnPagos:
                 Intent intentP = new Intent(this, PagosActivity.class);
                 startActivity(intentP);
+                break;
+            case R.id.btnSalir:
+                finish();
                 break;
         }
     }

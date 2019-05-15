@@ -11,10 +11,15 @@ public class IncidenciasActivity extends AppCompatActivity {
     TextView asunto, incidencia;
     Button btnEnviar;
 
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incidencias);
+
+        //Recibir extra
+        id = getIntent().getStringExtra("id");
     }
 
     //METODO PARA PONER BOTON DE REGRESAR EN LA PARTE DE LA BARRA

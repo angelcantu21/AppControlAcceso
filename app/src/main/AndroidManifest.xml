@@ -29,6 +29,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".InicioActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".RegistrarActivity"

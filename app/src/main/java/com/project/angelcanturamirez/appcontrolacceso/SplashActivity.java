@@ -10,12 +10,14 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class SplashActivity extends AppCompatActivity {
 
     TextView textSplash;
     ImageView splash;
+    ProgressBar progressBar;
     private Typeface fuente;
 
     private final int DURACION_PANTALLA=3000;
@@ -30,6 +32,7 @@ public class SplashActivity extends AppCompatActivity {
 
         splash = (ImageView)findViewById(R.id.imgSplash);
         textSplash = (TextView) findViewById(R.id.txtSplash);
+        progressBar = (ProgressBar) findViewById(R.id.progress);
 
         this.fuente = Typeface.createFromAsset(getAssets(), "fuentes/Staatliches.ttf");
         textSplash.setTypeface(fuente);
@@ -37,6 +40,7 @@ public class SplashActivity extends AppCompatActivity {
         Animation animation = AnimationUtils.loadAnimation(SplashActivity.this,R.anim.fadein);
         splash.startAnimation(animation);
         textSplash.startAnimation(animation);
+        progressBar.startAnimation(animation);
 
         new Handler().postDelayed(new Runnable(){
             public void run(){
