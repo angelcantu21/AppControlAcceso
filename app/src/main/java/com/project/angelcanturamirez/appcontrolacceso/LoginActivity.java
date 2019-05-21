@@ -1,10 +1,12 @@
 package com.project.angelcanturamirez.appcontrolacceso;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -158,6 +160,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);//Se crea un alerta builder
+        builder.setMessage("¿Seguro quieres salir?");//Mensaje de la alerta
+        builder.setTitle("Confirmación");//Titulo de la alerta
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });//EN CASO DE QUE SI
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });//EN CASO DE QUE NO
+
+        AlertDialog dialog = builder.create();//Se crea esa alerta
+        dialog.show();//Se muestra esa alerta
     }
 }
 

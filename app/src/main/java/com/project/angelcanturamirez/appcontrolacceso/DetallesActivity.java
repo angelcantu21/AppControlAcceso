@@ -45,6 +45,7 @@ public class DetallesActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intentP);
                 break;
             case R.id.btnSalir:
+                Intent intentS = new Intent(Intent.ACTION_MAIN);
                 finish();
                 break;
         }

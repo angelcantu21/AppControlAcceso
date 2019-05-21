@@ -16,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".IndicaccionesActivity"
+            android:label="@string/title_activity_indicacciones"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -48,7 +52,6 @@
             android:name=".MensajesActivity"
             android:label="Mensajes"
             android:parentActivityName=".InicioActivity" />
-        />
         <activity
             android:name=".EstatusActivity"
             android:label="Estatus"
@@ -61,9 +64,10 @@
             android:name=".Configuraciones.AcercaActivity"
             android:label="Acerca de"
             android:parentActivityName=".DetallesActivity" />
-        <activity android:name=".Configuraciones.PagosActivity"
+        <activity
+            android:name=".Configuraciones.PagosActivity"
             android:label="Pagar renta"
-            android:parentActivityName=".DetallesActivity"/>
+            android:parentActivityName=".DetallesActivity" />
     </application>
 
 </manifest>

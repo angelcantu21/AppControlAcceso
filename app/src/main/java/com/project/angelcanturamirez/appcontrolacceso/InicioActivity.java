@@ -1,10 +1,12 @@
 package com.project.angelcanturamirez.appcontrolacceso;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -184,5 +186,28 @@ public class InicioActivity extends AppCompatActivity implements View.OnClickLis
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+/*
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);//Se crea un alerta builder
+        builder.setMessage("¿Seguro quieres salir?");//Mensaje de la alerta
+        builder.setTitle("Confirmación");//Titulo de la alerta
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });//EN CASO DE QUE SI
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });//EN CASO DE QUE NO
+
+        AlertDialog dialog = builder.create();//Se crea esa alerta
+        dialog.show();//Se muestra esa alerta*/
     }
 }

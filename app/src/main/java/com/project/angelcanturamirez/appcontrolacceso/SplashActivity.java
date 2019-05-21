@@ -29,7 +29,6 @@ public class SplashActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
 
-
         splash = (ImageView)findViewById(R.id.imgSplash);
         textSplash = (TextView) findViewById(R.id.txtSplash);
         progressBar = (ProgressBar) findViewById(R.id.progress);
@@ -44,7 +43,7 @@ public class SplashActivity extends AppCompatActivity {
 
         new Handler().postDelayed(new Runnable(){
             public void run(){
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), IndicaccionesActivity.class);
                 startActivity(intent);
                 finish();
             }

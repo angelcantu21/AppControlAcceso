@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#3E50AA"
+    tools:context=".Fragments.IndicacionesRegistroFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/imgRegistros"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:src="@drawable/indicaciones_people"
+        android:layout_marginTop="100dp"/>
+
+    <TextView
+        android:id="@+id/txtRegistros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:text="En la aplicaciones podras registrar invitados para generar un QR que le permita accesar al sector facilmente sin necesidad de entregar su ID."
+        android:textSize="20dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textAlignment="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"/>
+
+</LinearLayout>
