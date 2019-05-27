@@ -1,6 +1,8 @@
 package com.project.angelcanturamirez.appcontrolacceso;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,7 +36,7 @@ public class ServiciosActivity extends AppCompatActivity implements Response.Err
     ArrayList<ServicioModelo> listaServicios;
     RecyclerView recyclerView;
 
-    String id="";
+    String id="", tel="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +88,14 @@ public class ServiciosActivity extends AppCompatActivity implements Response.Err
             adaptador.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(), "Seleccion: "+listaServicios.get(recyclerView.getChildAdapterPosition(v)).getTelefono(), Toast.LENGTH_LONG).show();
+                    tel=listaServicios.get(recyclerView.getChildAdapterPosition(v)).getTelefono().toString();
+                    try{
+                        Intent intent = new Intent(Intent.ACTION_CALL);
+                        intent.setData(Uri.parse("tel:"+tel));
+                        startActivity(intent);
+                    }catch(Exception e){
+                    }
+//                    Toast.makeText(getApplicationContext(), listaServicios.get(recyclerView.getChildAdapterPosition(v)).getTelefono(), Toast.LENGTH_LONG).show();
                 }
             });
 
