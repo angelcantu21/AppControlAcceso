@@ -1,5 +1,6 @@
 package com.project.angelcanturamirez.appcontrolacceso;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,9 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.project.angelcanturamirez.appcontrolacceso.RecyclerViews.RecyclerViewAdaptador;
 import com.project.angelcanturamirez.appcontrolacceso.RecyclerViews.RecyclerViewMensajes;
-import com.project.angelcanturamirez.appcontrolacceso.entidades.InvitadoModelo;
 import com.project.angelcanturamirez.appcontrolacceso.entidades.MensajeModelo;
 
 import org.json.JSONArray;
@@ -49,10 +48,11 @@ public class MensajesActivity extends AppCompatActivity implements Response.Erro
         RecyclerViewMensajes adaptador = new RecyclerViewMensajes(listaMensajes);
         recyclerView.setAdapter(adaptador);
 
-        //Recibir extra
-        id = getIntent().getStringExtra("id");
+        //Shared Preferences
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginSp", MODE_PRIVATE);
+        id = sharedPreferences.getString("idResidente", "No hay datos");
 
-        String url_edit= getString(R.string.url)+"/appacceso/mensajes.php?id=1";
+        String url_edit= "http://"+getString(R.string.url)+"/appacceso/mensajes.php?id="+id;
         jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
         requestQueue.add(jsonObjectRequest);
     }

@@ -6,37 +6,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fff"
+    android:background="@drawable/buildings_fondo"
     tools:context=".SplashActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center">
 
-    <TextView
-        android:id="@+id/txtSplash"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:text="CONTROL DE ACCESO"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:textAlignment="center"/>
     <ImageView
         android:id="@+id/imgSplash"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/splashscreen"/>
+        android:src="@drawable/acceso_logo"
+        android:layout_weight="9"/>
 
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginBottom="120dp"/>
+
+</LinearLayout>
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.project.angelcanturamirez.appcontrolacceso;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -54,8 +55,9 @@ public class EstatusActivity extends AppCompatActivity implements View.OnClickLi
         btnGuardar = (Button) findViewById(R.id.btnGuardarEstado);
         btnGuardar.setOnClickListener(this);
 
-        //Recibir extra
-        id = getIntent().getStringExtra("id");
+        //Shared Preferences
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginSp", MODE_PRIVATE);
+        id = sharedPreferences.getString("idResidente", "No hay datos");
 
         //WebService
         requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -94,11 +96,7 @@ public class EstatusActivity extends AppCompatActivity implements View.OnClickLi
     public void onResponse(JSONObject response) {
 
         if(accion == "guardar"){
-            Toast.makeText(this, "Guardado", Toast.LENGTH_LONG).show();
-            Intent data = new Intent();
-            data.setData(Uri.parse(id));
-            setResult(RESULT_OK, data);
-            finish();
+            Toast.makeText(this, "Estado guardado", Toast.LENGTH_LONG).show();
         }else {
 
             ResidenteModelo residente = null;

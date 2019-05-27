@@ -1,6 +1,7 @@
 package com.project.angelcanturamirez.appcontrolacceso;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,8 +30,9 @@ public class DetallesActivity extends AppCompatActivity implements View.OnClickL
         pagos.setOnClickListener(this);
         salir.setOnClickListener(this);
 
-        //Recibir extra
-        id = getIntent().getStringExtra("id");
+        //Shared Preferences
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginSp", MODE_PRIVATE);
+        id = sharedPreferences.getString("idResidente", "No hay datos");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.project.angelcanturamirez.appcontrolacceso;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.project.angelcanturamirez.appcontrolacceso.RecyclerViews.RecyclerViewAdaptador;
+import com.project.angelcanturamirez.appcontrolacceso.RecyclerViews.RecyclerViewInvitados;
 import com.project.angelcanturamirez.appcontrolacceso.entidades.InvitadoModelo;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,13 +42,15 @@ public class InvitadosActivity extends AppCompatActivity implements Response.Err
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setHasFixedSize(true);
         requestQueue = Volley.newRequestQueue(getApplicationContext());
-        RecyclerViewAdaptador adaptador = new RecyclerViewAdaptador(listaInvitados);
+        RecyclerViewInvitados adaptador = new RecyclerViewInvitados(listaInvitados);
         recyclerView.setAdapter(adaptador);
 
-        //Recibir extra
-        id = getIntent().getStringExtra("id");
+        //Shared Preferences
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginSp", MODE_PRIVATE);
+        id = sharedPreferences.getString("idResidente", "No hay datos");
 
         String url_edit= "http://"+getString(R.string.url)+"/appacceso/ConsultarInvitados.php?id="+id;
+        Toast.makeText(getApplicationContext(), url_edit, Toast.LENGTH_SHORT).show();
         jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
         requestQueue.add(jsonObjectRequest);
 
@@ -84,7 +87,7 @@ public class InvitadosActivity extends AppCompatActivity implements Response.Err
                 listaInvitados.add(invitado);
             }
 
-            RecyclerViewAdaptador adaptador=new RecyclerViewAdaptador(listaInvitados);
+            RecyclerViewInvitados adaptador=new RecyclerViewInvitados(listaInvitados);
             recyclerView.setAdapter(adaptador);
 
             adaptador.setOnClickListener(new View.OnClickListener() {

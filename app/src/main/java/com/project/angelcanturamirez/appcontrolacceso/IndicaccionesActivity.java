@@ -1,172 +1,203 @@
 package com.project.angelcanturamirez.appcontrolacceso;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.net.Uri;
+import android.graphics.Color;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
-
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.text.Html;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-
+import android.view.Window;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
+import com.project.angelcanturamirez.appcontrolacceso.Adaptadores.IntroViewPagerAdapter;
+import com.project.angelcanturamirez.appcontrolacceso.Adaptadores.ScreenItem;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.project.angelcanturamirez.appcontrolacceso.Fragments.IndicacionPagosFragment;
-import com.project.angelcanturamirez.appcontrolacceso.Fragments.IndicacionesMensajesFragment;
-import com.project.angelcanturamirez.appcontrolacceso.Fragments.IndicacionesRegistroFragment;
+public class IndicaccionesActivity extends AppCompatActivity {
 
-public class IndicaccionesActivity extends AppCompatActivity implements IndicacionesMensajesFragment.OnFragmentInteractionListener, IndicacionesRegistroFragment.OnFragmentInteractionListener, IndicacionPagosFragment.OnFragmentInteractionListener {
-
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    private ViewPager mViewPager;
-
-    private TextView[] puntosSlide;
-    private LinearLayout linearPuntos;//linearLayout de Puntos
+    private ViewPager screenPager;
+    IntroViewPagerAdapter introViewPagerAdapter ;
+    TabLayout tabIndicator;
+    Button btnNext;
+    int position = 0 ;
+    Button btnGetStarted;
+    Animation btnAnim, tvAnim;
+    TextView tvSkip, tvDescripcion;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if (restorePrefData()) {
+
+            Intent mainActivity = new Intent(getApplicationContext(),LoginActivity.class );
+            startActivity(mainActivity);
+            finish();
+
+
+        }
+
+        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_indicacciones);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        // ini views
+        btnNext = findViewById(R.id.btn_next);
+        btnGetStarted = findViewById(R.id.btn_get_started);
+        tabIndicator = findViewById(R.id.tab_indicator);
+        btnAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.button_animation);
+        tvSkip = findViewById(R.id.tv_skip);
 
-        linearPuntos=findViewById(R.id.idLinearPuntos);
-        agregaIndicadorPuntos(0);
+        // fill list screen
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        final List<ScreenItem> mList = new ArrayList<>();
+        mList.add(new ScreenItem("Pagos en linea","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.paypal));
+        mList.add(new ScreenItem("Registra tus invitados","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.indicaciones_people));
+        mList.add(new ScreenItem("Envia mensajes","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.indicaciones_mensajes));
+        mList.add(new ScreenItem("Llamadas de emergencia","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.cellphone));
+
+        // setup viewpager
+        screenPager =findViewById(R.id.container);
+        introViewPagerAdapter = new IntroViewPagerAdapter(this,mList);
+        screenPager.setAdapter(introViewPagerAdapter);
+
+        // setup tablayout with viewpager
+
+        tabIndicator.setupWithViewPager(screenPager);
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                position = screenPager.getCurrentItem();
+                if (position < mList.size()) {
+
+                    position++;
+                    screenPager.setCurrentItem(position);
 
 
-        mViewPager.addOnPageChangeListener(viewListener);
-    }
+                }
+
+                if (position == mList.size()-1) { // when we rech to the last screen
+
+                    // TODO : show the GETSTARTED Button and hide the indicator and the next button
+
+                    loaddLastScreen();
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_indicacciones, menu);
-        return true;
-    }
+                }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
-    public void agregaIndicadorPuntos(int pos){
-        puntosSlide =new TextView[3];
-        linearPuntos.removeAllViews();
-
-        for (int i=0; i< puntosSlide.length; i++){
-            puntosSlide[i]=new TextView(this);
-            puntosSlide[i].setText(Html.fromHtml("&#8226;"));
-            puntosSlide[i].setTextSize(35);
-            puntosSlide[i].setTextColor(getResources().getColor(R.color.darkblue));
-            linearPuntos.addView(puntosSlide[i]);
-        }
-
-        if(puntosSlide.length>0){
-            puntosSlide[pos].setTextColor(getResources().getColor(R.color.green));
-        }
-
-    }
-
-    ViewPager.OnPageChangeListener viewListener=new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int i, float v, int i1) {
-
-        }
-
-        @Override
-        public void onPageSelected(int i) {
-            agregaIndicadorPuntos(i);
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int i) {
-
-        }
-    };
-
-    public static class PlaceholderFragment extends Fragment {
-
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
-
-        public static Fragment newInstance(int sectionNumber) {
-            Fragment fragment = null;
-            switch (sectionNumber){
-                case 1:
-                    fragment = new IndicacionPagosFragment();
-                    break;
-                case 2:
-                    fragment = new IndicacionesRegistroFragment();
-                    break;
-                case 3:
-                    fragment = new IndicacionesMensajesFragment();
-                    break;
             }
-            return fragment;
-        }
+        });
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_indicaciones, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
+        // tablayout add change listener
+
+
+        tabIndicator.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                if (tab.getPosition() == mList.size()-1) {
+
+                    loaddLastScreen();
+
+                }
+
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
+
+        // Get Started button click listener
+
+        btnGetStarted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                //open main activity
+
+                Intent mainActivity = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(mainActivity);
+                // also we need to save a boolean value to storage so next time when the user run the app
+                // we could know that he is already checked the intro screen activity
+                // i'm going to use shared preferences to that process
+                savePrefsData();
+                finish();
+
+
+
+            }
+        });
+
+        // skip button click listener
+
+        tvSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                screenPager.setCurrentItem(mList.size());
+            }
+        });
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    private boolean restorePrefData() {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
 
-        @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
-        }
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
+        Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpnend",false);
+        return  isIntroActivityOpnendBefore;
 
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 3;
-        }
+
+
     }
+
+    private void savePrefsData() {
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("isIntroOpnend",true);
+        editor.commit();
+
+
+    }
+
+    // Muestra el boton de GETSTARTED y oculta el indicador y el boton de siguiente
+    private void loaddLastScreen() {
+
+        btnNext.setVisibility(View.INVISIBLE);
+        btnGetStarted.setVisibility(View.VISIBLE);
+        tvSkip.setVisibility(View.INVISIBLE);
+        tabIndicator.setVisibility(View.INVISIBLE);
+        // TODO : ADD an animation the getstarted button
+        // setup animation
+        btnGetStarted.setAnimation(btnAnim);
+
+
+
+    }
+
 }

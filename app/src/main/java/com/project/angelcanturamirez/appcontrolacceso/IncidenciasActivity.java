@@ -1,5 +1,6 @@
 package com.project.angelcanturamirez.appcontrolacceso;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,8 +19,9 @@ public class IncidenciasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incidencias);
 
-        //Recibir extra
-        id = getIntent().getStringExtra("id");
+        //Shared Preferences
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginSp", MODE_PRIVATE);
+        id = sharedPreferences.getString("idResidente", "No hay datos");
     }
 
     //METODO PARA PONER BOTON DE REGRESAR EN LA PARTE DE LA BARRA

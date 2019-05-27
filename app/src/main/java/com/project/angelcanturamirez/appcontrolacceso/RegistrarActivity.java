@@ -2,6 +2,7 @@ package com.project.angelcanturamirez.appcontrolacceso;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -94,9 +95,6 @@ public class RegistrarActivity extends AppCompatActivity implements View.OnClick
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        //Recibir extra
-        id = getIntent().getStringExtra("id");
-
         imagen_antigua = foto.getDrawable();
 
 
@@ -147,6 +145,10 @@ public class RegistrarActivity extends AppCompatActivity implements View.OnClick
                 fecha_caducidad = year + "-" + month + "-" + dayOfMonth;
             }
         });
+
+        //Shared Preferences
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginSp", MODE_PRIVATE);
+        id = sharedPreferences.getString("idResidente", "No hay datos");
 
     }
 

@@ -2,6 +2,8 @@ package com.project.angelcanturamirez.appcontrolacceso;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -15,10 +17,8 @@ import android.widget.TextView;
 
 public class SplashActivity extends AppCompatActivity {
 
-    TextView textSplash;
     ImageView splash;
     ProgressBar progressBar;
-    private Typeface fuente;
 
     private final int DURACION_PANTALLA=3000;
 
@@ -30,15 +30,12 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         splash = (ImageView)findViewById(R.id.imgSplash);
-        textSplash = (TextView) findViewById(R.id.txtSplash);
         progressBar = (ProgressBar) findViewById(R.id.progress);
 
-        this.fuente = Typeface.createFromAsset(getAssets(), "fuentes/Staatliches.ttf");
-        textSplash.setTypeface(fuente);
+        progressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
 
-        Animation animation = AnimationUtils.loadAnimation(SplashActivity.this,R.anim.fadein);
+        Animation animation = AnimationUtils.loadAnimation(SplashActivity.this,R.anim.fade_in_indicaciones);
         splash.startAnimation(animation);
-        textSplash.startAnimation(animation);
         progressBar.startAnimation(animation);
 
         new Handler().postDelayed(new Runnable(){

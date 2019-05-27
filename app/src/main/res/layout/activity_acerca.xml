@@ -5,171 +5,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/fondo_edificio"
     tools:context=".Configuraciones.AcercaActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="201dp"
-                android:layout_gravity="center"
-                android:src="@drawable/logo"
-                android:layout_marginTop="30dp"/>
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quam risus, facilisis nec lacinia varius, laoreet sed justo. Integer porttitor, purus id ultricies fermentum, ipsum leo auctor elit, id ultricies enim diam eget tellus. Fusce eget sagittis massa, id pretium nunc. Curabitur vel enim id lacus accumsan aliquam in vitae lacus."
-                android:textColor="@android:color/black"
-                android:fontFamily="sans-serif-condensed" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textSize="20dp"
-                android:text="E-mail: angelcanturamirez@gmail.com"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:fontFamily="sans-serif-condensed"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:fontFamily="sans-serif-condensed"
-                android:textSize="15dp"
-                android:text="http://www.appacceso.com"
-                android:textAlignment="center"
-                android:textColor="#353535"
-                android:layout_marginBottom="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="#000"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="NUESTRO EQUIPO"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:layout_marginBottom="20dp"
-                android:textStyle="bold"/>
-            <!-- DESARROLLADOR -->
-            <android.support.v7.widget.CardView
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10px"
-                android:orientation="horizontal"
-                android:weightSum="1"
-                android:background="#ffffff">
 
                 <ImageView
-                    android:layout_width="133dp"
-                    android:layout_height="156dp"
-                    android:layout_marginLeft="5dp"
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="201dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/angelcantu"
-                    app:srcCompat="@android:drawable/sym_def_app_icon"/>
+                    android:src="@drawable/acceso_logo" />
 
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quam risus, facilisis nec lacinia varius, laoreet sed justo. Integer porttitor, purus id ultricies fermentum, ipsum leo auctor elit, id ultricies enim diam eget tellus. Fusce eget sagittis massa, id pretium nunc. Curabitur vel enim id lacus accumsan aliquam in vitae lacus."
+                    android:textColor="@android:color/white" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:text="Jose Angel Cantu Ramirez\nCEO\nubiKte\nwww.facebook.com/angelcantu21"
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-            <!-- SOPORTE -->
-            <android.support.v7.widget.CardView
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_marginTop="20px"
-                android:background="#ffffff">
-
-                <ImageView
-                    android:layout_width="133dp"
-                    android:layout_height="156dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/devdesign"/>
-
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="E-mail: angelcanturamirez@gmail.com"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:text="Jean Karlo Alvarado Cano\nDesarrollador\nubiKte\nwww.facebook.com/name"
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp" />
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="http://www.appacceso.com"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="15dp" />
+
             </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <!-- DESARROLLADOR -->
-            <android.support.v7.widget.CardView
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1"
-                android:layout_marginTop="20px"
-                tools:background="#ffffff">
-
-                <ImageView
-                    android:layout_width="133dp"
-                    android:layout_height="156dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/devdesign" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="Jose Esteban Cisneros Sanchez\nDesarrollador\nubiKte\nwww.facebook.com/name"
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp" />
-            </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-
-        </LinearLayout>
 
     </ScrollView>
 

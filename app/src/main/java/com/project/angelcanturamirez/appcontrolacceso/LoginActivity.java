@@ -1,7 +1,10 @@
 package com.project.angelcanturamirez.appcontrolacceso;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -9,10 +12,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -29,18 +37,21 @@ import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener{
 
-    // Create a VideoView variable, a MediaPlayer variable, and an int to hold the current
-    // video position.
-    private VideoView videoBG;
-    MediaPlayer mMediaPlayer;
-    int mCurrentVideoPosition;
+    ImageView imag;
+    ImageButton imgButton;
     Button btn_ingresar;
     EditText user, pass;
+    android.support.v7.widget.CardView card;
+    android.support.v7.widget.Toolbar tool;
+
     String id="";
     Boolean login_correcto=false;
+    SharedPreferences sharedPreferences;
 
     RequestQueue requestQueue;
     JsonObjectRequest jsonObjectRequest;
+
+    ProgressDialog loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,79 +60,44 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
-        user = (EditText) findViewById(R.id.txtEmail);
-        pass = (EditText) findViewById(R.id.txtPassword);
+        sharedPreferences = getSharedPreferences("LoginSp", MODE_PRIVATE);
 
-        btn_ingresar = findViewById(R.id.btLogInButton);
+        if (ObtenerEstado()) {
+            Intent mainActivity = new Intent(getApplicationContext(), PrincipalActivity.class);
+            startActivity(mainActivity);
+            finish();
+        } else {
 
-        //WebService
-        requestQueue = Volley.newRequestQueue(getApplicationContext());
+            imag = findViewById(R.id.imageView);
+            user = (EditText) findViewById(R.id.txtEmail);
+            pass = (EditText) findViewById(R.id.txtPassword);
+            btn_ingresar = findViewById(R.id.btLogInButton);
+            card = findViewById(R.id.cv);
+            tool = findViewById(R.id.bgHeader);
+            imgButton = findViewById(R.id.btRegister);
 
-        btn_ingresar.setOnClickListener(this);
-        // Hook up the VideoView to our UI.
-        videoBG = (VideoView) findViewById(R.id.videoView);
+            Animation animation = AnimationUtils.loadAnimation(LoginActivity.this,R.anim.uptodown);
+            imag.setAnimation(animation);
+            tool.setAnimation(animation);
 
-        // Build your video Uri
-        Uri uri = Uri.parse("android.resource://" // First start with this,
-                + getPackageName() // then retrieve your package name,
-                + "/" // add a slash,
-                + R.raw.sector); // and then finally add your video resource. Make sure it is stored
-        // in the raw folder.
+            Animation animation_cv = AnimationUtils.loadAnimation(LoginActivity.this,R.anim.downtoup);
+            card.setAnimation(animation_cv);
+            btn_ingresar.setAnimation(animation_cv);
 
-        // Set the new Uri to our VideoView
-        videoBG.setVideoURI(uri);
-        // Start the VideoView
-        videoBG.start();
+            //WebService
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        // Set an OnPreparedListener for our VideoView. For more information about VideoViews,
-        // check out the Android Docs: https://developer.android.com/reference/android/widget/VideoView.html
-        videoBG.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mMediaPlayer = mediaPlayer;
-                // We want our video to play over and over so we set looping to true.
-                mMediaPlayer.setLooping(true);
-                // We then seek to the current posistion if it has been set and play the video.
-                if (mCurrentVideoPosition != 0) {
-                    mMediaPlayer.seekTo(mCurrentVideoPosition);
-                    mMediaPlayer.start();
-                }
-            }
-        });
+            btn_ingresar.setOnClickListener(this);
+            imgButton.setOnClickListener(this);
+        }
     }
 
-    /*================================ Important Section! ================================
-    We must override onPause(), onResume(), and onDestroy() to properly handle our
-    VideoView.
-     */
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Capture the current video position and pause the video.
-        mCurrentVideoPosition = mMediaPlayer.getCurrentPosition();
-        videoBG.pause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Restart the video when resuming the Activity
-        videoBG.start();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // When the Activity is destroyed, release our MediaPlayer and set it to null.
-        mMediaPlayer.release();
-        mMediaPlayer = null;
-    }
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        Toast.makeText(getApplicationContext(),"Datos incorrectos "+error.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Datos incorrectos", Toast.LENGTH_LONG).show();
         login_correcto = false;
+        loading.dismiss();
     }
 
     @Override
@@ -139,9 +115,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         login_correcto = true;
         if (login_correcto) {
-            Intent start = new Intent(getApplicationContext(), InicioActivity.class);
-            start.putExtra("id", id);
+            sharedPreferences.edit().putString("idResidente", id).apply();
+            loading.dismiss();
+            Intent start = new Intent(getApplicationContext(), PrincipalActivity.class);
             startActivity(start);
+            GuardarEstado();
             finish();
         }
     }
@@ -151,6 +129,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.btLogInButton:
                 if(!(user.getText().toString().equals("") && pass.getText().toString().equals(""))){
+                    //Mensaje de espera
+                    loading = ProgressDialog.show(this,"Verificando datos","Espere por favor...",false,false);
                     String url_edit= "http://"+getString(R.string.url)+"/appacceso/ConsultarResidenteCodigo.php?id="+user.getText().toString();
                     jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
                     requestQueue.add(jsonObjectRequest);
@@ -159,6 +139,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
 
                 break;
+            case R.id.btRegister:
+                Intent i = new Intent(this, QrLoginActivity.class);
+                startActivity(i);
         }
     }
 
@@ -184,5 +167,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         AlertDialog dialog = builder.create();//Se crea esa alerta
         dialog.show();//Se muestra esa alerta
     }
+
+    public void GuardarEstado(){
+        sharedPreferences.edit().putBoolean("Logeado", true).apply();
+    }
+
+    public Boolean ObtenerEstado(){
+        return sharedPreferences.getBoolean("Logeado", false);
+    }
 }
+
 

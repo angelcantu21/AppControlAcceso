@@ -16,9 +16,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".CreditosActivity"
+            android:parentActivityName=".PrincipalActivity"/>
+        <activity
+            android:name=".ServiciosActivity"
+            android:label="Servicios"
+            android:parentActivityName=".PrincipalActivity" />
+        <activity android:name=".CamaraActivity" />
+        <activity
+            android:name=".QrLoginActivity"
+            android:label="Login QR"
+            android:parentActivityName=".LoginActivity" />
+        <activity
+            android:name=".PrincipalActivity"
+            android:label="@string/title_activity_principal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".IndicaccionesActivity"
-            android:label="@string/title_activity_indicacciones"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_indicacciones" />
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
@@ -31,35 +46,32 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".InicioActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/AppTheme.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".RegistrarActivity"
             android:label="Registrar Invitado"
-            android:parentActivityName=".InicioActivity" />
+            android:parentActivityName=".PrincipalActivity" />
         <activity
             android:name=".DetallesActivity"
             android:label="Configuracion"
-            android:parentActivityName=".InicioActivity" />
+            android:parentActivityName=".PrincipalActivity" />
         <activity
             android:name=".InvitadosActivity"
             android:label="Lista de invitados"
-            android:parentActivityName=".InicioActivity" />
+            android:parentActivityName=".PrincipalActivity" />
         <activity
             android:name=".MensajesActivity"
             android:label="Mensajes"
-            android:parentActivityName=".InicioActivity" />
+            android:parentActivityName=".PrincipalActivity" />
         <activity
             android:name=".EstatusActivity"
             android:label="Estatus"
-            android:parentActivityName=".InicioActivity" />
+            android:parentActivityName=".PrincipalActivity" />
         <activity
             android:name=".IncidenciasActivity"
             android:label="Incidencias"
-            android:parentActivityName=".InicioActivity" />
+            android:parentActivityName=".PrincipalActivity" />
         <activity
             android:name=".Configuraciones.AcercaActivity"
             android:label="Acerca de"
