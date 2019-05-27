@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -22,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.project.angelcanturamirez.appcontrolacceso.Configuraciones.AcercaActivity;
@@ -38,6 +41,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class PrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, Response.ErrorListener, Response.Listener<JSONObject> {
 
@@ -46,6 +51,7 @@ public class PrincipalActivity extends AppCompatActivity
     RequestQueue requestQueue;
     JsonObjectRequest jsonObjectRequest;
 
+    CircleImageView fotoUsuario;
     TextView txt_status, txt_registro, txt_invitados, txt_mensajes, txt_incidencias, txt_configuracion, txt_panico, txt_usuarioNombre, txt_apartamento;
     CardView cardRegistrar, cardStatus, cardConfiguracion, cardMensajes, cardInvitados, cardBoton, cardIncidencias, cardCerrarSesion;
     Intent i ;
@@ -96,6 +102,7 @@ public class PrincipalActivity extends AppCompatActivity
         txt_panico = (TextView) findViewById(R.id.TituloPanico);
         txt_usuarioNombre = (TextView) header.findViewById(R.id.txtNombreUsuario);
         txt_apartamento = (TextView) header.findViewById(R.id.txtApartamento);
+        fotoUsuario = (CircleImageView) header.findViewById(R.id.imageView);
 
         //Cargar fuentes
         this.fuente = Typeface.createFromAsset(getAssets(), PATH_FUENTE);
@@ -133,6 +140,10 @@ public class PrincipalActivity extends AppCompatActivity
 
         //Mensaje de espera
         loading = ProgressDialog.show(this,"Cargando informacion","Espere por favor...",false,false);
+
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        cargarWebService();
     }
 
     @Override
@@ -164,7 +175,7 @@ public class PrincipalActivity extends AppCompatActivity
 
     @Override
     protected void onPostResume() {
-        requestQueue = Volley.newRequestQueue(getApplicationContext());
+        //requestQueue = Volley.newRequestQueue(getApplicationContext());
         String url_edit= "http://"+getString(R.string.url)+"/appacceso/ConsultarResidentes.php?id="+id_residente;
         jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
         requestQueue.add(jsonObjectRequest);
@@ -288,5 +299,24 @@ public class PrincipalActivity extends AppCompatActivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void cargarWebService(){
+        String url = "http://"+getString(R.string.url)+"/appacceso/uploads/"+id_residente+".jpg";
+        url = url.replace(" ","%20");
+
+        ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
+            @Override
+            public void onResponse(Bitmap response) {
+                fotoUsuario.setImageBitmap(response);
+                loading.dismiss();
+            }
+        }, 0, 0, ImageView.ScaleType.CENTER, null, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error al cargar la imagen"+error, Toast.LENGTH_LONG).show();
+            }
+        });
+        requestQueue.add(imageRequest);
     }
 }
