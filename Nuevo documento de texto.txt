@@ -1,0 +1,872 @@
+PANTALA 1
+-------------
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:orientation="horizontal"
+                android:background="#000">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/user"/>
+
+                <TextView
+                    android:id="@+id/txtNombreUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:text="{Nombre}"/>
+            </LinearLayout>
+<!--
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="DASHBOARD"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+-->
+    <LinearLayout
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="10dp">
+
+        <android.support.v7.widget.CardView
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:id="@+id/bankcardId"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:alpha="0.9"
+            android:layout_margin="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#fff">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:src="@drawable/user_black"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="35dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#CCCCCC">
+
+                    <TextView
+                        android:id="@+id/TituloRegistrar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Esta seccion permite registrar invitados."
+                        android:padding="5dp"
+                        android:textColor="#000000"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_status"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:alpha="0.9"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#fff">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:src="@drawable/eye_black"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="35dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#CCCCCC">
+
+                <TextView
+                    android:id="@+id/txtStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="{Estado}" />
+
+            </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="5dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_invitados"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:alpha="0.9"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="#fff">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:src="@drawable/people_black"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="35dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#CCC">
+
+                <TextView
+                    android:id="@+id/TituloInvitados"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Revise y verifique a sus invitados."
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_mensajes"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:alpha="0.9"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="#fff">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:src="@drawable/message_black"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="35dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#CCC">
+
+                <TextView
+                    android:id="@+id/TituloMensajes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Envia y revisa tus mensajes."
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+            <LinearLayout
+                android:clipToPadding="false"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_marginTop="5dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_incidencias"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:alpha="0.9"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:background="#fff">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:src="@drawable/warning_black"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="35dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#CCC">
+
+                        <TextView
+                            android:id="@+id/TituloIncidencias"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="Registra tus incidencias aqui."
+                            android:textColor="#000000" />
+                    </LinearLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_llamada"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:alpha="0.9"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:background="#fff">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:src="@drawable/people_black"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="35dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#CCC">
+
+                            <TextView
+                                android:id="@+id/TituloPanico"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Solo toca esto y se llamara al guardia."
+                                android:textColor="#000000"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:clipToPadding="false"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_marginTop="5dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_cerrar_sesion"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:alpha="0.9"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:background="#fff">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:src="@drawable/logout_black"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="35dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#CCC">
+
+                            <TextView
+                                android:id="@+id/TituloCerrarSesion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Cerrar Sesion"
+                                android:textColor="#000" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_configuracion"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:alpha="0.9"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:background="#fff">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:src="@drawable/settings_black"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="35dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#CCC">
+
+                            <TextView
+                                android:id="@+id/TituloConfiguracion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Configuracion de la cuenta"
+                                android:textColor="#000"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+-------------------------
+
+PANTALLA 2
+-------------------------
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:orientation="horizontal"
+                android:background="#000">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/user"/>
+
+                <TextView
+                    android:id="@+id/txtNombreUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:text="{Nombre}"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="DASHBOARD"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+    <LinearLayout
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="10dp">
+
+        <android.support.v7.widget.CardView
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:id="@+id/bankcardId"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:alpha="0.9"
+            android:layout_margin="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#000">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:src="@drawable/user_white"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="35dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#1A1A1A">
+
+                    <TextView
+                        android:id="@+id/TituloRegistrar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Esta seccion permite registrar invitados."
+                        android:padding="5dp"
+                        android:textColor="#fff"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_status"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:alpha="0.9"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#000">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:src="@drawable/eye_white"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="35dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#1A1A1A">
+
+                <TextView
+                    android:id="@+id/txtStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="{Estado}"
+                    android:padding="5dp"/>
+
+            </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="5dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_invitados"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:alpha="0.9"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="#000">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:src="@drawable/people_red"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="35dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#1A1A1A">
+
+                <TextView
+                    android:id="@+id/TituloInvitados"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Revise y verifique a sus invitados."
+                    android:textColor="#fff" />
+
+            </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_mensajes"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:alpha="0.9"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="#000">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:src="@drawable/message_white"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="35dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#1A1A1A">
+
+                <TextView
+                    android:id="@+id/TituloMensajes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Envia y revisa tus mensajes."
+                    android:textColor="#fff" />
+
+            </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+            <LinearLayout
+                android:clipToPadding="false"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_marginTop="5dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_incidencias"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:alpha="0.9"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:background="#000">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:src="@drawable/warning_white"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="35dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#1A1A1A">
+
+                        <TextView
+                            android:id="@+id/TituloIncidencias"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="Registra tus incidencias aqui."
+                            android:textColor="#fff" />
+                    </LinearLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_llamada"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:alpha="0.9"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:background="#000">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:src="@drawable/phone_white"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="35dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#1A1A1A">
+
+                            <TextView
+                                android:id="@+id/TituloPanico"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Solo toca esto y se llamara al guardia."
+                                android:textColor="#fff"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:clipToPadding="false"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_marginTop="5dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_cerrar_sesion"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:alpha="0.9"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:background="#000">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:src="@drawable/logout_white"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="35dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#1A1A1A">
+
+                            <TextView
+                                android:id="@+id/TituloCerrarSesion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Cerrar Sesion"
+                                android:textColor="#fff" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_configuracion"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:alpha="0.9"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:background="#000">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:src="@drawable/settings_white"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="35dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#1A1A1A">
+
+                            <TextView
+                                android:id="@+id/TituloConfiguracion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:padding="5dp"
+                                android:text="Configuracion de la cuenta"
+                                android:textColor="#fff"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+--------------------------------
+
+PANTALLA 3
+--------------------------------
