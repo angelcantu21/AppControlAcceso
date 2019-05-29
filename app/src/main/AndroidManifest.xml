@@ -21,7 +21,8 @@
         <activity
             android:name=".ServiciosActivity"
             android:label="Servicios"
-            android:parentActivityName=".PrincipalActivity" />
+            android:parentActivityName=".PrincipalActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name=".CamaraActivity" />
         <activity
             android:name=".QrLoginActivity"
@@ -30,7 +31,8 @@
         <activity
             android:name=".PrincipalActivity"
             android:label="@string/title_activity_principal"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".IndicaccionesActivity"
             android:label="@string/title_activity_indicacciones" />
@@ -47,30 +49,39 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.FullScreen"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".RegistrarActivity"
             android:label="Registrar Invitado"
-            android:parentActivityName=".PrincipalActivity" />
+            android:parentActivityName=".PrincipalActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".DetallesActivity"
             android:label="Configuracion"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName=".PrincipalActivity" />
         <activity
             android:name=".InvitadosActivity"
             android:label="Lista de invitados"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName=".PrincipalActivity" />
         <activity
             android:name=".MensajesActivity"
             android:label="Mensajes"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName=".PrincipalActivity" />
         <activity
             android:name=".EstatusActivity"
             android:label="Estatus"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName=".PrincipalActivity" />
         <activity
             android:name=".IncidenciasActivity"
             android:label="Incidencias"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:parentActivityName=".PrincipalActivity" />
         <activity
             android:name=".Configuraciones.AcercaActivity"

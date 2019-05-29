@@ -71,7 +71,7 @@ public class PrincipalActivity extends AppCompatActivity
 
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setItemIconTintList(null);
+        //navigationView.setItemIconTintList(null);
         View header = navigationView.getHeaderView(0);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

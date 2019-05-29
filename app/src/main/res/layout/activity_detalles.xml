@@ -8,6 +8,20 @@
     android:background="#fff"
     android:orientation="vertical">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -16,60 +30,66 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgUsuarioDetalles"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+                android:src="@android:drawable/ic_menu_gallery"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Configuracion de la cuenta"
+                android:text="Detalles de la cuenta"
                 android:textAlignment="center"
                 android:layout_margin="15dp"
                 android:textStyle="bold"
                 android:textSize="23dp"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="45dp"
-                android:background="#3d3d3d" />
-
-            <Button
-                android:id="@+id/btnAcerca"
+            <EditText
+                android:id="@+id/txtNombreUsuarioDetalles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Acerca de"
-                android:background="#fff"
-                android:textColor="#000"/>
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:enabled="false"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#3d3d3d" />
-
-            <Button
-                android:id="@+id/btnPagos"
+            <EditText
+                android:id="@+id/txtApellidoUsuarioDetalles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mensaulidades"
-                android:background="#fff"
-                android:textColor="#000"/>
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:enabled="false"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#3d3d3d" />
-
-            <Button
-                android:id="@+id/btnSalir"
+            <EditText
+                android:id="@+id/txtDepartamentoUsuarioDetalles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Salir"
-                android:background="#fff"
-                android:textColor="#000"/>
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:enabled="false"/>
 
-            <View
+            <EditText
+                android:id="@+id/txtCodigoUsuarioDetalles"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#3d3d3d" />
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:enabled="false"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Renta pagada"
+                android:textColor="#48B32B"
+                android:layout_margin="10dp"
+                android:enabled="false"/>
 
         </LinearLayout>
     </ScrollView>
