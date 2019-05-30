@@ -21,6 +21,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
+
+
 public class InvitadosActivity extends AppCompatActivity implements Response.ErrorListener, Response.Listener<JSONObject>{
 
     RequestQueue requestQueue;
@@ -30,6 +32,7 @@ public class InvitadosActivity extends AppCompatActivity implements Response.Err
     RecyclerView recyclerView;
 
     String id;
+    int dias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class InvitadosActivity extends AppCompatActivity implements Response.Err
         Toast.makeText(getApplicationContext(), url_edit, Toast.LENGTH_SHORT).show();
         jsonObjectRequest= new JsonObjectRequest(Request.Method.GET,url_edit,null,this,this);
         requestQueue.add(jsonObjectRequest);
+
 
     }
 
@@ -84,6 +88,15 @@ public class InvitadosActivity extends AppCompatActivity implements Response.Err
                 invitado.setNombre(jsonObject.optString("Nombre"));
                 invitado.setFecha(jsonObject.optString("Fecha"));
                 invitado.setCaducidad(jsonObject.optString("Caducidad"));
+                dias= jsonObject.optInt("dias");
+                invitado.setDias(dias);
+                if (dias<0){
+                    invitado.setDiasRestantes("EL REGISTRO DEL INVITADO HA CADUCADO");
+                }else if(dias==0){
+                    invitado.setDiasRestantes("HOY SE VENCE EL REGISTRO");
+                }else{
+                    invitado.setDiasRestantes("QUEDAN: "+jsonObject.optString("dias")+" DIAS");
+                }
                 listaInvitados.add(invitado);
             }
 

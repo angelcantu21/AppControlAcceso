@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Control de Acceso - V1.0</string>
     <string name="url">10.0.0.9</string>
+    <!--<string name="url">192.168.0.100</string>-->
     <string name="title_activity_indicacciones">IndicaccionesActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->

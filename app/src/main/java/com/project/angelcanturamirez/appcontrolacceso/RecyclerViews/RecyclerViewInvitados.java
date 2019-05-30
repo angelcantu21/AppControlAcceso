@@ -4,6 +4,7 @@ package com.project.angelcanturamirez.appcontrolacceso.RecyclerViews;
  * Created by ANGELCANTU on 26/01/2018.
  */
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +23,14 @@ public class RecyclerViewInvitados extends RecyclerView.Adapter<RecyclerViewInvi
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         //Variables
-        private TextView nombre, fecha, caducidad;
+        private TextView nombre, fecha, caducidad, dias;
 
         public ViewHolder(View itemView) {
             super(itemView);
             nombre = (TextView)itemView.findViewById(R.id.txtTitulo);
             fecha = (TextView)itemView.findViewById(R.id.txtDescripcion);
             caducidad = (TextView) itemView.findViewById(R.id.txtCarrera);
+            dias = itemView.findViewById(R.id.txtDiasRestantes);
         }
     }
 
@@ -51,6 +53,14 @@ public class RecyclerViewInvitados extends RecyclerView.Adapter<RecyclerViewInvi
         holder.nombre.setText(ListasInvitado.get(position).getNombre());
         holder.fecha.setText("Fecha:\n"+ListasInvitado.get(position).getFecha());
         holder.caducidad.setText("Caducidad:\n"+ListasInvitado.get(position).getCaducidad());
+        if (ListasInvitado.get(position).getDias()<0){
+            holder.dias.setTextColor(Color.parseColor("#FF0000"));
+        }else if(ListasInvitado.get(position).getDias()==0){
+            holder.dias.setTextColor(Color.parseColor("#EAD500"));
+        }else{
+            holder.dias.setTextColor(Color.parseColor("#26E300"));
+        }
+        holder.dias.setText(ListasInvitado.get(position).getDiasRestantes());
     }
 
     @Override
